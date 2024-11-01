@@ -4,8 +4,8 @@ public class Employee {
 
   private static int schetchic = 1;
 
-  private final int id;
-  private final String fullname;
+  private int id;
+  private String fullname;
   private int otdel;
   private int salary;
 
