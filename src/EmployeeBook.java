@@ -19,7 +19,8 @@ public class EmployeeBook {
           random.nextInt(50000, 100000));
     }
   }
-//печатает фамилии всех сотрудников
+
+  //печатает фамилии всех сотрудников
   public void printLastName() {
     for (Employee sotrudnik : massivEmployees) {
       if (sotrudnik == null) {
@@ -28,9 +29,10 @@ public class EmployeeBook {
       System.out.println(sotrudnik.getFullname());
     }
   }
-//вычисляет среднюю зп
+
+  //вычисляет среднюю зп
   public float calculatingAverageSalary() {
-    float average  = calculatingSumSalary() / massivEmployees.length;
+    float average = calculatingSumSalary() / massivEmployees.length;
     return average;
   }
 
@@ -41,7 +43,8 @@ public class EmployeeBook {
       if (sotrudnik == null) {
         continue;
       }
-      if (employeeWithMinSalary == null || sotrudnik.getSalary() > employeeWithMinSalary.getSalary()) {
+      if (employeeWithMinSalary == null
+          || sotrudnik.getSalary() > employeeWithMinSalary.getSalary()) {
         employeeWithMinSalary = sotrudnik;
       }
     }
@@ -55,7 +58,8 @@ public class EmployeeBook {
       if (sotrudnik == null) {
         continue;
       }
-      if (employeeWithMaxSalary == null || sotrudnik.getSalary() < employeeWithMaxSalary.getSalary()) {
+      if (employeeWithMaxSalary == null
+          || sotrudnik.getSalary() < employeeWithMaxSalary.getSalary()) {
         employeeWithMaxSalary = sotrudnik;
       }
     }
@@ -147,6 +151,7 @@ public class EmployeeBook {
     }
   }
 
+  // удаление сотрудника по заданному ID
   public void delEmployee(int id) {
     for (int i = 0; i < massivEmployees.length; i++) {
       if (i == id - 1) {
@@ -155,21 +160,21 @@ public class EmployeeBook {
     }
   }
 
+  //добавление сотрудника с предварительной проверкой возможности
   public void insEmployee(String fullname, int otdel, int salary) {
-    Employee newSotr = new Employee(fullname, otdel, salary);
+    Employee newEmoloyee = new Employee(fullname, otdel, salary);
+    String answer = "Нельзя добавить сотрудника " + fullname + ", нет свободных мест ";
     for (int i = 0; i < massivEmployees.length; i++) {
       if (massivEmployees[i] == null) {
-        massivEmployees[i] = newSotr;
-        System.out.println("Список после insEmployee");
-        printListEmployees();
-        System.out.println(true);
+        answer = "Можно добавить сотрудника, есть свободное место ";
+        massivEmployees[i] = newEmoloyee;
+        System.out.println(" Добавиляем :" + fullname );
         break;
-      } else {
-        System.out.println(false + "нет свободного места");
       }
     }
+    System.out.println(answer);
   }
-
+//поиск сотрудника по ID
   public void findToId(int id) {
     for (int i = 0; i < massivEmployees.length; i++) {
       if (i == id - 1) {
