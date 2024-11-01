@@ -6,12 +6,31 @@ public class Main {
   public static void main(String[] args) {
 
     vvodSotrudnikov();
+    System.out.println("Полный список сотрудников: ");
     printSotrudnikov();
+    System.out.println();
     System.out.println("Сумма затрат на зарплату в месяц: " + sumSalars());
     System.out.println("Сотрудник с минимальной зарплатой: " + sotrudnikMinSalary());
     System.out.println("Сотрудник с максимальной зарплатой: " + sotrudnikMaxSalary());
     System.out.println("Средняя зарплата: " + sredSalary());
-    System.out.println("Ф.И.О. Сотрудников: "); printFamilii();
+    System.out.println();
+    System.out.println("Ф.И.О. Сотрудников: ");
+    printFamilii();
+    System.out.println();
+
+    IndexSalaryAll(10);
+    System.out.println();
+
+    IndexSalaryOtdel(15,2);
+    System.out.println();
+
+    sotrudnikiOtdela(2);
+    System.out.println();
+
+    sravniSalary(80000);
+    System.out.println();
+
+
 
   }
 
@@ -24,8 +43,8 @@ public class Main {
 
   private static void printFamilii() {
     for (Employee fio : massivSotrudnikov) {
-            System.out.println(fio.getFullname());
-          }
+      System.out.println(fio.getFullname());
+    }
   }
 
   private static float sredSalary() {
@@ -93,6 +112,60 @@ public class Main {
       // System.out.println("спис сотр " + sotrudnik);
     }
   }
+
+  public static int IndexSalaryAll(int procent) {
+    int newSalary = 0;
+    System.out.println("Зарплата проиндексированная на : " + procent + " процентов : ");
+    for (Employee sotrudnik : massivSotrudnikov) {
+      newSalary = sotrudnik.getSalary() + sotrudnik.getSalary() * procent / 100;
+      sotrudnik.setSalary(newSalary);
+
+      System.out.println(sotrudnik.getFullname() + " : " + sotrudnik.getSalary());
+
+    }
+    return newSalary;
+  }
+
+  public static int IndexSalaryOtdel(int procent, int otdel) {
+    int newSalary = 0;
+    System.out.println("Зарплата сотрудников " + otdel + " отдела" +
+        " проиндексированная на : " + procent + " процентов : ");
+    for (Employee sotrudnik : massivSotrudnikov) {
+      if (sotrudnik.getOtdel() == otdel) {
+        newSalary = sotrudnik.getSalary() + sotrudnik.getSalary() * procent / 100;
+        sotrudnik.setSalary(newSalary);
+
+        System.out.println(sotrudnik.getFullname() + " : " + sotrudnik.getSalary());
+      }
+    }
+    return newSalary;
+  }
+
+  public static void sotrudnikiOtdela(int otdel) {
+    //String spisok = "Списочек";
+    System.out.println("Сотрудники " + otdel + " отдела");
+    for (Employee sotrudnik : massivSotrudnikov) {
+      if (sotrudnik.getOtdel() == otdel) {
+        System.out.println(sotrudnik.getId() +" "+ sotrudnik.getFullname() +" "+
+            sotrudnik.getSalary());
+
+      }
+    }
+  }
+
+  public static void sravniSalary(int zp) {
+    for (Employee sotrudnik : massivSotrudnikov) {
+      if (sotrudnik.getSalary() < zp) {
+        System.out.println("Зарплата сотрудника меньше: " +zp+ ":" + sotrudnik.getId() + " " +
+            sotrudnik.getFullname() + " " + sotrudnik.getSalary());
+      } else {
+        System.out.println("Зарплата сотрудника больше " +zp+ ": " + sotrudnik.getId() + " " +
+            sotrudnik.getFullname() + " " + sotrudnik.getSalary());
+      }
+    }
+  }
+
+
 
 
 }
