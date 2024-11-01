@@ -1,46 +1,32 @@
-import java.util.Random;
-
 public class Main {
-
 
   public static void main(String[] args) {
     EmployeeBook objectOfEmployeeBook= new EmployeeBook();
-    objectOfEmployeeBook.vvodSotrudnikov();
-
+    objectOfEmployeeBook.greatEmpioyee();
     System.out.println("Полный список сотрудников: ");
-    objectOfEmployeeBook.printSotrudnikov();
+    objectOfEmployeeBook.printListEmployees();
     System.out.println();
-
-    objectOfEmployeeBook.delSotrudnika(1);
-    System.out.println("Список после delSotrudnika");
-    objectOfEmployeeBook.printSotrudnikov();
-
-    objectOfEmployeeBook.insSotrudnika("СТЕПАНОВ СТЕПАН СТЕПАНОВИЧ", 3, 90000);
+    objectOfEmployeeBook.delEmployee(1);
+    System.out.println("Список после delEmployee");
+    objectOfEmployeeBook.printListEmployees();
+    objectOfEmployeeBook.insEmployee("СТЕПАНОВ СТЕПАН СТЕПАНОВИЧ", 3, 90000);
     System.out.println();
-
-    System.out.println("Сумма затрат на зарплату в месяц: " + objectOfEmployeeBook.sumSalars());
-    System.out.println("Сотрудник с минимальной зарплатой: " + objectOfEmployeeBook.sotrudnikMinSalary());
-    System.out.println("Сотрудник с максимальной зарплатой: " + objectOfEmployeeBook.sotrudnikMaxSalary());
-    System.out.println("Средняя зарплата: " + objectOfEmployeeBook.sredSalary());
+    System.out.println("Сумма затрат на зарплату в месяц: " + objectOfEmployeeBook.calculatingSumSalary());
+    System.out.println("Сотрудник с минимальной зарплатой: " + objectOfEmployeeBook.calculatingSotrudnikMinSalary());
+    System.out.println("Сотрудник с максимальной зарплатой: " + objectOfEmployeeBook.calculatingSotrudnikMaxSalary());
+    System.out.println("Средняя зарплата: " + objectOfEmployeeBook.calculatingAverageSalary());
     System.out.println();
     System.out.println("Ф.И.О. Сотрудников: ");
-    objectOfEmployeeBook.printFamilii();
+    objectOfEmployeeBook.printLastName();
     System.out.println();
-
-    objectOfEmployeeBook.IndexSalaryAll(10);
+    objectOfEmployeeBook.indexSalaryAll(10);
     System.out.println();
-
-    objectOfEmployeeBook.IndexSalaryOtdel(15, 2);
+    objectOfEmployeeBook.indexSalaryOtdel(15, 2);
     System.out.println();
-
-    objectOfEmployeeBook.sotrudnikiOtdela(2);
+    objectOfEmployeeBook.printListOtdela(2);
     System.out.println();
-
-    objectOfEmployeeBook.sravniSalary(80000);
+    objectOfEmployeeBook.compareSalary(80000);
     System.out.println();
-
-    objectOfEmployeeBook.findPoId(4);
-
-
+    objectOfEmployeeBook.findToId(4);
   }
 }

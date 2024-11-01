@@ -2,73 +2,70 @@ import java.util.Random;
 
 public class EmployeeBook {
 
-  private static Employee[] massivSotrudnikov = new Employee[10];
+  private static final Employee[] massivEmployees = new Employee[10];
 
   private final Random random = new Random();
 
-  private final String[] name = {"Иван", "Сергей", "Петр", "Максим", "Олег"};
-  private final String[] familiya = {"Иванов", "Сергеев", "Петров", "Максимов", "Олегов"};
-  private final String[] otchestvo = {"Иванович", "Сергеевич", "Петрович", "Олегович"};
+  private final String[] firstName = {"Иван", "Сергей", "Петр", "Максим", "Олег"};
+  private final String[] lastName = {"Иванов", "Сергеев", "Петров", "Максимов", "Олегов"};
+  private final String[] patronymic = {"Иванович", "Сергеевич", "Петрович", "Олегович"};
 
-  public void vvodSotrudnikov() {
-    for (int i = 0; i < massivSotrudnikov.length; i++) {
-      String fullname = familiya[random.nextInt(0, familiya.length)] + " "
-          + name[random.nextInt(0, name.length)] + " "
-          + otchestvo[random.nextInt(0, otchestvo.length)];
-      massivSotrudnikov[i] = new Employee(fullname, random.nextInt(1, 6),
+  public void greatEmpioyee() {
+    for (int i = 0; i < massivEmployees.length; i++) {
+      String fullname = lastName[random.nextInt(0, lastName.length)] + " "
+          + firstName[random.nextInt(0, firstName.length)] + " "
+          + patronymic[random.nextInt(0, patronymic.length)];
+      massivEmployees[i] = new Employee(fullname, random.nextInt(1, 6),
           random.nextInt(50000, 100000));
     }
   }
-
-  public void printFamilii() {
-    for (Employee sotrudnik : massivSotrudnikov) {
+//печатает фамилии всех сотрудников
+  public void printLastName() {
+    for (Employee sotrudnik : massivEmployees) {
       if (sotrudnik == null) {
         continue;
       }
       System.out.println(sotrudnik.getFullname());
     }
   }
-
-  public float sredSalary() {
-   /* float sum = 0;
-    for (Employee sotrudnik : massivSotrudnikov) {
-      sum = sum + sotrudnik.getSalary();
-    }
-    float srednya = sum / massivSotrudnikov.length;
-    */
-    float srednya = sumSalars() / massivSotrudnikov.length;
-    return srednya;
+//вычисляет среднюю зп
+  public float calculatingAverageSalary() {
+    float average  = calculatingSumSalary() / massivEmployees.length;
+    return average;
   }
 
-  public Employee sotrudnikMaxSalary() {
-    Employee sotrMaxSalary = null;
-    for (Employee sotrudnik : massivSotrudnikov) {
+  // вычисляет сотрудника с максимальной зп
+  public Employee calculatingSotrudnikMaxSalary() {
+    Employee employeeWithMinSalary = massivEmployees[0];
+    for (Employee sotrudnik : massivEmployees) {
       if (sotrudnik == null) {
         continue;
       }
-      if (sotrMaxSalary == null || sotrudnik.getSalary() > sotrMaxSalary.getSalary()) {
-        sotrMaxSalary = sotrudnik;
+      if (employeeWithMinSalary == null || sotrudnik.getSalary() > employeeWithMinSalary.getSalary()) {
+        employeeWithMinSalary = sotrudnik;
       }
     }
-    return sotrMaxSalary;
+    return employeeWithMinSalary;
   }
 
-  public Employee sotrudnikMinSalary() {
-    Employee sotrMinSalary = null;
-    for (Employee sotrudnik : massivSotrudnikov) {
+  // вычисляет сотрудника с минимальной зп
+  public Employee calculatingSotrudnikMinSalary() {
+    Employee employeeWithMaxSalary = massivEmployees[0];
+    for (Employee sotrudnik : massivEmployees) {
       if (sotrudnik == null) {
         continue;
       }
-      if (sotrMinSalary == null || sotrudnik.getSalary() < sotrMinSalary.getSalary()) {
-        sotrMinSalary = sotrudnik;
+      if (employeeWithMaxSalary == null || sotrudnik.getSalary() < employeeWithMaxSalary.getSalary()) {
+        employeeWithMaxSalary = sotrudnik;
       }
     }
-    return sotrMinSalary;
+    return employeeWithMaxSalary;
   }
 
-  public int sumSalars() {
+  //вычисляет сумму всех затрат на зп
+  public int calculatingSumSalary() {
     int sum = 0;
-    for (Employee sotrudnik : massivSotrudnikov) {
+    for (Employee sotrudnik : massivEmployees) {
       if (sotrudnik == null) {
         continue;
       }
@@ -77,37 +74,36 @@ public class EmployeeBook {
     return sum;
   }
 
-  public void printSotrudnikov() {
-    for (int i = 0; i < massivSotrudnikov.length; i++) {
-      String sotrudnik = String.valueOf(massivSotrudnikov[i]);
+  //печатает список всех сотрудников
+  public void printListEmployees() {
+    for (int i = 0; i < massivEmployees.length; i++) {
+      String sotrudnik = String.valueOf(massivEmployees[i]);
       System.out.println(sotrudnik);
-      //for (Employee sotrudnik:massivSotrudnikov)
-      // System.out.println("спис сотр " + sotrudnik);
-
     }
   }
 
-  public int IndexSalaryAll(int procent) {
+  //индексирует зп всех сотрудников на заданный процент
+  public int indexSalaryAll(int procent) {
     int newSalary = 0;
-    System.out.println("Зарплата проиндексированная на : " + procent + " процентов : ");
-    for (Employee sotrudnik : massivSotrudnikov) {
+    System.out.println("Зарплата всех соттрудников проиндексированная на : "
+        + procent + " процентов : ");
+    for (Employee sotrudnik : massivEmployees) {
       if (sotrudnik == null) {
         continue;
       }
       newSalary = sotrudnik.getSalary() + sotrudnik.getSalary() * procent / 100;
       sotrudnik.setSalary(newSalary);
-
       System.out.println(sotrudnik.getFullname() + " : " + sotrudnik.getSalary());
-
     }
     return newSalary;
   }
 
-  public int IndexSalaryOtdel(int procent, int otdel) {
+  //индексирует зарплату сотрудников заданного отдела на заданный процент
+  public int indexSalaryOtdel(int procent, int otdel) {
     int newSalary = 0;
     System.out.println("Зарплата сотрудников " + otdel + " отдела" +
         " проиндексированная на : " + procent + " процентов : ");
-    for (Employee sotrudnik : massivSotrudnikov) {
+    for (Employee sotrudnik : massivEmployees) {
       if (sotrudnik == null) {
         continue;
       }
@@ -121,9 +117,10 @@ public class EmployeeBook {
     return newSalary;
   }
 
-  public void sotrudnikiOtdela(int otdel) {
+  //печать сотрудников заданного отдела
+  public void printListOtdela(int otdel) {
     System.out.println("Сотрудники " + otdel + " отдела");
-    for (Employee sotrudnik : massivSotrudnikov) {
+    for (Employee sotrudnik : massivEmployees) {
       if (sotrudnik == null) {
         continue;
       }
@@ -134,8 +131,9 @@ public class EmployeeBook {
     }
   }
 
-  public void sravniSalary(int zp) {
-    for (Employee sotrudnik : massivSotrudnikov) {
+  // сравнение зп сотрудников с заданной зп
+  public void compareSalary(int zp) {
+    for (Employee sotrudnik : massivEmployees) {
       if (sotrudnik == null) {
         continue;
       }
@@ -149,22 +147,21 @@ public class EmployeeBook {
     }
   }
 
-  public void delSotrudnika(int id) {
-    for (int i = 0; i < massivSotrudnikov.length; i++) {
+  public void delEmployee(int id) {
+    for (int i = 0; i < massivEmployees.length; i++) {
       if (i == id - 1) {
-        massivSotrudnikov[i] = null;
+        massivEmployees[i] = null;
       }
     }
   }
 
-
-  public void insSotrudnika(String fullname, int otdel, int salary) {
+  public void insEmployee(String fullname, int otdel, int salary) {
     Employee newSotr = new Employee(fullname, otdel, salary);
-    for (int i = 0; i < massivSotrudnikov.length; i++) {
-      if (massivSotrudnikov[i] == null) {
-        massivSotrudnikov[i] = newSotr;
-        System.out.println("Список после insSotrudnika");
-        printSotrudnikov();
+    for (int i = 0; i < massivEmployees.length; i++) {
+      if (massivEmployees[i] == null) {
+        massivEmployees[i] = newSotr;
+        System.out.println("Список после insEmployee");
+        printListEmployees();
         System.out.println(true);
         break;
       } else {
@@ -173,14 +170,13 @@ public class EmployeeBook {
     }
   }
 
-  public void findPoId(int id) {
-    for (int i = 0; i < massivSotrudnikov.length; i++) {
+  public void findToId(int id) {
+    for (int i = 0; i < massivEmployees.length; i++) {
       if (i == id - 1) {
-        String sotrudnik = String.valueOf(massivSotrudnikov[i]);
+        String sotrudnik = String.valueOf(massivEmployees[i]);
         System.out.println(sotrudnik);
       }
     }
   }
-
 
 }

@@ -4,20 +4,18 @@ public class Employee {
 
   private static int schetchic = 1;
 
-  private int id;
-  private String fullname;
+  private final int id;
+  private final String fullname;
   private int otdel;
   private int salary;
 
-//конструктор заполнения данных сотрудника
+  //конструктор заполнения данных сотрудника
   public Employee(String fullname, int otdel, int salary) {
     this.fullname = fullname;
     this.otdel = otdel;
     this.salary = salary;
     this.id = schetchic++;
-
   }
-
 
   public String getFullname() {
     return fullname;
@@ -70,12 +68,4 @@ public class Employee {
             " , Зарплата : " + salary
         ;
   }
-
-
-  }
-
-
-
-
-
-
+}
