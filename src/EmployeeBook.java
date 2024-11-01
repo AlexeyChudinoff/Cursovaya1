@@ -38,32 +38,32 @@ public class EmployeeBook {
 
   // вычисляет сотрудника с максимальной зп
   public Employee calculatingSotrudnikMaxSalary() {
-    Employee employeeWithMinSalary = massivEmployees[0];
-    for (Employee sotrudnik : massivEmployees) {
-      if (sotrudnik == null) {
+    Employee employeeWithMaxSalary = massivEmployees[0];
+    for (Employee employee : massivEmployees) {
+      if (employee == null) {
         continue;
       }
-      if (employeeWithMinSalary == null
-          || sotrudnik.getSalary() > employeeWithMinSalary.getSalary()) {
-        employeeWithMinSalary = sotrudnik;
+      if (employeeWithMaxSalary == null
+          || employee.getSalary() > employeeWithMaxSalary.getSalary()) {
+        employeeWithMaxSalary = employee;
       }
     }
-    return employeeWithMinSalary;
+    return employeeWithMaxSalary;
   }
 
   // вычисляет сотрудника с минимальной зп
   public Employee calculatingSotrudnikMinSalary() {
-    Employee employeeWithMaxSalary = massivEmployees[0];
-    for (Employee sotrudnik : massivEmployees) {
-      if (sotrudnik == null) {
+    Employee employeeWithMinSalary = massivEmployees[0];
+    for (Employee employee : massivEmployees) {
+      if (employee == null) {
         continue;
       }
-      if (employeeWithMaxSalary == null
-          || sotrudnik.getSalary() < employeeWithMaxSalary.getSalary()) {
-        employeeWithMaxSalary = sotrudnik;
+      if (employeeWithMinSalary == null
+          || employee.getSalary() < employeeWithMinSalary.getSalary()) {
+        employeeWithMinSalary = employee;
       }
     }
-    return employeeWithMaxSalary;
+    return employeeWithMinSalary;
   }
 
   //вычисляет сумму всех затрат на зп
