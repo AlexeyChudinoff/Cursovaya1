@@ -32,7 +32,7 @@ public class EmployeeBook {
 
   //вычисляет среднюю зп
   public float calculatingAverageSalary() {
-    float average = calculatingSumSalary() / massivEmployees.length;
+    float average = (float) calculatingSumSalary() / massivEmployees.length;
     return average;
   }
 
